@@ -30,8 +30,8 @@ def main():
 
         # def __new__(...)  # tak można obsłużyć klasy dla poszczególnych ras
 
-        def __init__(self, name, race):
-            super().__init__(name)
+        def __init__(self, name, race, **kwargs):
+            super().__init__(name, **kwargs)
             self.race = race
 
         def daj_glos(self):
@@ -40,12 +40,18 @@ def main():
     # class Husky(Pies):
     #     glos = "Uuuuuu"
 
+    class Kot(Zwierzak):
+        glos = "Miau"
+        def __init__(self, name, kolor_siersci, **kwargs):
+            super().__init__(name,  **kwargs)
+            self.kolor_siersci = kolor_siersci
+
     z = Pies("Fafik", "Buldog")
     print(z.przedstaw_sie())
 
     try:
         for _ in range(5):
-            z2 = Pies.z_losowym_imieniem()
+            z2 = Pies.z_losowym_imieniem("York")
             print(z2.przedstaw_sie(), z2.daj_glos())
     except AnimalException as e:
         pass
@@ -53,5 +59,38 @@ def main():
 
     print(Pies.wylosuj((1, 2, 3, 4)))
 
+    class PsoKot(Pies, Kot):
+        glos = "Hau Miau"
+        def __init__(self, name, race, kolor_siersci):
+            super().__init__(name, race=race, kolor_siersci=kolor_siersci)
+
+    #print(PsoKot.__mro__)  - wartościowa ściągawka - Method Resolution Order
+    pk = PsoKot("Henryk", race="Psokot Andaluzyjski", kolor_siersci="Niebieski")
+    print(pk.daj_glos())
+
+def metody_specjalne():
+    class A:
+        def __init__(self):
+            self.counter = 0
+
+        def __str__(self):
+            return f"<Obiekt Klasy A, counter={self.counter}>"
+
+        def __getitem__(self, item):
+            return f"Wartość pod indeksem {item}"
+
+        def __getattr__(self, item):
+            def f():
+                print("wywołuję", item)
+                self.counter += 1
+                return self
+            return f
+
+    a = A()
+    print(a)
+    print(a[123])
+    print(a.increased().compared().sorted())
+
 if __name__ == '__main__':
     main()
+    metody_specjalne()
