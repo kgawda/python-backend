@@ -75,7 +75,16 @@ def funkcja_jako_obiekt():
 
     ### ZADANIE ###
     def dodaj_wydruki(f):
-        ...
+        def wrapper(*args, **kwargs):
+            print("Start funkcji")
+            result = f(*args, **kwargs)
+            print("Koniec funkcji")
+            return result
+        return wrapper
+
+    def kwadrat(x):
+        print("Liczę kwadrat z", x)
+        return x ** 2
 
     kwadrat_z_wydrukami = dodaj_wydruki(kwadrat)
     rezultat = kwadrat_z_wydrukami(2)
@@ -83,6 +92,16 @@ def funkcja_jako_obiekt():
     # wydruk: Koniec funkcji
     assert rezultat == 4
 
+    @dodaj_wydruki
+    def szscian(x):
+        print("Liczę szscian z", x)
+        return x ** 3
+
+    # @dodaj_wydruki przed definicją funkcji znaczy to samo co po definicji zrobienie:
+    # szescian = dodaj_wydruki(szescian)
+
+    result = szscian(234)
+    print(result)
 
 if __name__ == '__main__':
     main()
