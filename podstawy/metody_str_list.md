@@ -1,5 +1,5 @@
 Stringi (str)
-#############
+=============
 
 `s.upper()` 	- zmienia wszystkie litery na wielkie
 `assert "Ala ma kota".upper() == "ALA MA KOTA"`
@@ -58,7 +58,7 @@ assert s.splitlines() == ["Linia 1", "Linia 2", "Ostatnia linia."]
 
 
 Listy (list)
-############
+============
 
 `list(s)` 	- konwertuje sekwencję s na listę
 `assert list((1,2,3)) == [1, 2, 3]`
