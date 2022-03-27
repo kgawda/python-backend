@@ -1,3 +1,6 @@
+import random
+import time
+
 def main():
     def f1(arg1, arg2, arg3=333):
         print(arg1, arg2, arg3)
@@ -27,7 +30,60 @@ def main():
     #def f4(*args, **kwargs):
     #    f3(*args, **kwargs)
 
+def funkcja_jako_obiekt():
+    def f(x):
+        return x
+    print(f, type(f))
+    identycznosc = f
+    assert identycznosc(123) == 123
+
+    kwadrat = lambda x: x ** 2
+
+    #def kwadrat(x):
+    #    return x ** 2
+
+    funkcja = random.choice([identycznosc, hex, bin, abs, kwadrat])
+    print(funkcja, funkcja.__name__, funkcja(-123))
+
+    ### callback
+    def wyslij_mailing(tresc, odbiorcy, done_callback=None):
+        """
+        Funkcja wysyłająca maile.
+        done_callback to funkcja przyjmująca jako argument listę adresatów do których udało się wysłać maila.
+        """
+        time.sleep(1)
+        success = random.randint(0, 100) > 10
+        if success:
+            if done_callback:
+                done_callback(odbiorcy)
+
+    def success_callback(odbiorcy):
+        print("Udało się wysłać maile do odbiorców: " + ", ".join(odbiorcy))
+
+    print(wyslij_mailing.__doc__)
+    wyslij_mailing("Witaj!", ["a@b.pl", "c@d.pl"], success_callback)
+
+    wyslij_mailing("Witaj!", ["a@b.pl", "c@d.pl"], lambda lista: print(f"Wysłano do {lista}"))
+
+    def fabryka_funkcji_potegujacych(n):
+        def potega(x):
+            return x ** n
+        return potega
+
+    szescian = fabryka_funkcji_potegujacych(3)
+    print(szescian(32))
+
+    ### ZADANIE ###
+    def dodaj_wydruki(f):
+        ...
+
+    kwadrat_z_wydrukami = dodaj_wydruki(kwadrat)
+    rezultat = kwadrat_z_wydrukami(2)
+    # wydruk: Start funkcji
+    # wydruk: Koniec funkcji
+    assert rezultat == 4
 
 
 if __name__ == '__main__':
     main()
+    funkcja_jako_obiekt()
