@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{book.title}}</title>
-</head>
-<body>
+{% extends 'library/base.html' %}
 
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
 <h1>{{ book.title }}</h1>
 <p>by <a href="{% url 'author' book.author.id %}">{{book.author}}</a></p>
 <p>{{ book.description }}</p>
 
-</body>
-</html>
+{% endblock %}
