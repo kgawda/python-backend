@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<h1>{{ title }}</h1>
-<p>Strona otworzona o {{ time }} za pomocą {{ browser }}</p>
+{% extends 'library/base.html' %}
 
-{% if books %}
-    Posiadamy następujące książki:
-    <ul>
-    {% for book in books %}
-      <li><a href="{% url 'book' book.id %}">Książka {{ book.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    Na razie brak książek
-{% endif %}
+{% block title %}{{ title }}{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>Strona otworzona o {{ time }} za pomocą {{ browser }}</p>
+
+    {% if books %}
+        Posiadamy następujące książki:
+        <ul>
+        {% for book in books %}
+          <li><a href="{% url 'book' book.id %}">Książka {{ book.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        Na razie brak książek
+    {% endif %}
+{% endblock %}
