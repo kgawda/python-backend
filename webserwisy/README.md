@@ -49,3 +49,13 @@ Book.objects.filter(title="Pan Tadeusz")
 Book.objects.get(id=1)
 Book.objects.get(title="Pan Tadeusz")
 ```
+
+Django admin
+
+Modyfikujemy `library/admin.py` 
+
+```shell
+python manage.py createsuperuser  # podajemy dowolny mail
+python manage.py runserver
+```
+Otwieramy naszą stroną z adresem `/admin`
