@@ -1,8 +1,11 @@
 import datetime
 
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Book, Author
+from .forms import AddBookForm
 
 def home(request):
     browser = request.headers['User-Agent'].split()[-1]
@@ -26,3 +29,21 @@ def author(request, author_id):
     author = get_object_or_404(Author, id=author_id)
     books = author.book_set.all()
     return render(request, 'library/author.html', {'author': author, 'books': books})
+
+def add_book(request):
+    if request.method == "POST":
+        form = AddBookForm(request.POST)
+        if form.is_valid():
+            author = Author.objects.get(name=form.cleaned_data["author_name"])
+            book = Book(
+                title=form.cleaned_data["title"],
+                author=author,
+                description=form.cleaned_data["description"]
+            )
+            book.save()
+            # from django.urls import reverse
+            return HttpResponseRedirect(reverse('book', args=(book.id,)))
+    else:
+        form = AddBookForm()
+
+    return render(request, 'library/add_book.html', {'form': form})
