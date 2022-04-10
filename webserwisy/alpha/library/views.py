@@ -3,6 +3,7 @@ import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 from .models import Book, Author
 from .forms import AddBookForm, BookForm_ModelForm
@@ -41,7 +42,7 @@ def add_book(request):
                 description=form.cleaned_data["description"]
             )
             book.save()
-            # from django.urls import reverse
+            messages.success(request, "Dodano książkę!")  # from django.contrib import messages
             return HttpResponseRedirect(reverse('book', args=(book.id,)))
     else:
         form = AddBookForm()
@@ -53,6 +54,7 @@ def add_book_modelform(request):
         form = BookForm_ModelForm(request.POST)
         if form.is_valid():
             book = form.save()
+            messages.success(request, "Dodano książkę!")  # from django.contrib import messages
             return HttpResponseRedirect(reverse('book', args=(book.id,)))
     else:
         form = BookForm_ModelForm()
