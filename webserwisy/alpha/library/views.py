@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 from .models import Book, Author
-from .forms import AddBookForm, BookForm_ModelForm
+from .forms import AddBookForm, BookForm_ModelForm, DeleteBookForm
 
 def home(request):
     browser = request.headers['User-Agent'].split()[-1]
@@ -23,7 +23,15 @@ def home(request):
 def book(request, book_id):
     #book = Book.objects.get(id=book_id)
     book = get_object_or_404(Book, id=book_id)
-    return render(request, 'library/book.html', {'book': book})
+    if request.method == "POST":
+        form = DeleteBookForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data["operation"] == "delete":
+                book.delete()
+                messages.success(request, "Usunięto książkę")
+                return HttpResponseRedirect(reverse("home"))
+    delete_form = DeleteBookForm()
+    return render(request, 'library/book.html', {'book': book, "delete_form": delete_form})
 
 def author(request, author_id):
     #author = Author.objects.get(id=author_id)
@@ -43,7 +51,7 @@ def add_book(request):
             )
             book.save()
             messages.success(request, "Dodano książkę!")  # from django.contrib import messages
-            return HttpResponseRedirect(reverse('book', args=(book.id,)))
+            return HttpResponseRedirect(book.get_absolute_url())
     else:
         form = AddBookForm()
 
@@ -55,7 +63,7 @@ def add_book_modelform(request):
         if form.is_valid():
             book = form.save()
             messages.success(request, "Dodano książkę!")  # from django.contrib import messages
-            return HttpResponseRedirect(reverse('book', args=(book.id,)))
+            return HttpResponseRedirect(book.get_absolute_url())
     else:
         form = BookForm_ModelForm()
     return render(request, 'library/add_book.html', {'form': form})

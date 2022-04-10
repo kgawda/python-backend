@@ -7,4 +7,10 @@
 <p>by <a href="{% url 'author' book.author.id %}">{{book.author}}</a></p>
 <p>{{ book.description }}</p>
 
+<form method="post">
+    {% csrf_token %}
+    {{ delete_form }}
+    <input type="submit" value="Usuń">
+</form>
+
 {% endblock %}

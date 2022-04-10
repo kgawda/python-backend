@@ -24,3 +24,6 @@ class BookForm_ModelForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['title', 'author', 'description']
+
+class DeleteBookForm(forms.Form):
+    operation = forms.CharField(widget=forms.HiddenInput(), required=True, initial="delete")
