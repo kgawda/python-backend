@@ -15,6 +15,11 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+    def cinemas_that_play_it(self):
+        return self.projection_set.all()
+
+    # Do omówienia: Cinema.objects.filter(projection__movie__title="Chłopaki nie płaczą").filter(projection__movie__minimum_age__lt=8)
+
 class Projection(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

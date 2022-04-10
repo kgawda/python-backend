@@ -4,4 +4,8 @@
 
 {% block content %}
 <h1>Sieć kin Cinemas</h1>
+{% for name, details in highlights.items %}
+{{name}}: {%for detail in details%}{{detail}} {%endfor%}
+{% endfor %}
+
 {% endblock %}
