@@ -13,8 +13,7 @@ def home(request):
         'browser': browser,
         'books': books,
     }
-    #print(request.path, request.method, request.META, request.headers)
-    print(request.method, request.POST)
+
     return render(request, 'library/index.html', context)
 
 def book(request, book_id):
