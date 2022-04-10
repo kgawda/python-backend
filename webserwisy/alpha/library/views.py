@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import Book, Author
-from .forms import AddBookForm
+from .forms import AddBookForm, BookForm_ModelForm
 
 def home(request):
     browser = request.headers['User-Agent'].split()[-1]
@@ -46,4 +46,14 @@ def add_book(request):
     else:
         form = AddBookForm()
 
+    return render(request, 'library/add_book.html', {'form': form})
+
+def add_book_modelform(request):
+    if request.method == "POST":
+        form = BookForm_ModelForm(request.POST)
+        if form.is_valid():
+            book = form.save()
+            return HttpResponseRedirect(reverse('book', args=(book.id,)))
+    else:
+        form = BookForm_ModelForm()
     return render(request, 'library/add_book.html', {'form': form})
