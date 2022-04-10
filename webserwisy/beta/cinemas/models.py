@@ -23,4 +23,4 @@ class Projection(models.Model):
     tickets_available = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return f"{self.movie.title} at {self.cinema.name} on {self.date.strftime('%m/%d/%Y %H:%M:%S')}"
+        return f"{self.movie.title} at {self.cinema.name} on {self.date.strftime('%d.%m.%Y %H:%M:%S')}"
