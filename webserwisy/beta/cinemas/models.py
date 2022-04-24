@@ -16,7 +16,7 @@ class Movie(models.Model):
         return self.title
 
     def cinemas_that_play_it(self):
-        return self.projection_set.all()
+        return Cinema.objects.filter(projection__movie=self)
 
     # Do omówienia: Cinema.objects.filter(projection__movie__title="Chłopaki nie płaczą").filter(projection__movie__minimum_age__lt=8)
 
