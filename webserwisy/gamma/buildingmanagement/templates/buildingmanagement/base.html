@@ -9,7 +9,7 @@
     {% if user.is_authenticated %}
         {{ user }} | <a href="{% url 'logout' %}">logout</a>
     {% else %}
-        <a href="{% url 'login' %}">login</a>
+        <a href="{% url 'login' %}">login</a> | <a href="{% url 'signup' %}">signup</a>
     {% endif %}
 </header>
 {%block content%}
