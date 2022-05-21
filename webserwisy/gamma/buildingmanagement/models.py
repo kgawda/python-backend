@@ -21,10 +21,10 @@ class Room(models.Model):
         #Room.objects.filter(id=self.id).update(people_count=F("people_count") - count)
         #Room.objects.filter(id=other_room.id).update(people_count=F("people_count") + count)
         # albo:
-        self.people_count = F("people_count") - count
-        self.save()
-        other_room.people_count = F("people_count") + count
-        other_room.save()
+        # self.people_count = F("people_count") - count
+        # self.save()
+        # other_room.people_count = F("people_count") + count
+        # other_room.save()
         # # ale uwaga: powysze pozostawia obiekt F w self.people_coun,
         # # więc kolejny self.save znów mniejszy wartość.
         # # Dopiero self.refresh_from_db() wyczyści nam to pole
