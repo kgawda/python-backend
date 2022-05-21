@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
+from django.views.generic import ListView
+
+from .models import Reservation
 
 def home(request):
     return render(request, 'buildingmanagement/home.html', {})
@@ -19,3 +22,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+class ReservationListView(ListView):
+    model = Reservation
