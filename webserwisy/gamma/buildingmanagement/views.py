@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import ListView
 
@@ -23,6 +25,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+# @login_required  - do użycia dla function-based-views
 
-class ReservationListView(ListView):
+class ReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
