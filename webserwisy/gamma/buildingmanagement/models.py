@@ -7,6 +7,7 @@ from django.db.models import UniqueConstraint
 class Room(models.Model):
     name = models.CharField(max_length=100)
     people_count = models.PositiveSmallIntegerField(default=0)
+    max_people_count = models.PositiveSmallIntegerField(null=False)
 
     def __str__(self):
         return self.name
@@ -58,8 +59,6 @@ class Reservation(models.Model):
             UniqueConstraint(fields=["room", "date"], name="unique_room_reservation")
         ]
         ordering = ['date']
-
-
 
     def __str__(self):
         return f"{self.room.name}/{self.date}"
