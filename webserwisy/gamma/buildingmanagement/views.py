@@ -67,9 +67,16 @@ class ReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
 
 def room(request, room_id):
-    room = get_object_or_404(Room, id=room_id)
+    #room = get_object_or_404(Room, id=room_id)
+    room = Room.objects.filter(id=room_id).prefetch_related('projector', 'accesscards').first()
+    # Dzięki prefetch_related zaoszczędzimy późniejszych zapytań do bazy
+
+    # skrót do utorzenia nowej karty, zapisania w bazie i dodania do relacji:
+    # card = room.accesscards.create(owner=request.user)
+
     reserved_days = room.get_reserved_days(month=5)
     # jak sprawdzić czy sala ma rzutnik? tak: hasattr(room, "projector")
+
     return render(
         request,
         'buildingmanagement/room.html',

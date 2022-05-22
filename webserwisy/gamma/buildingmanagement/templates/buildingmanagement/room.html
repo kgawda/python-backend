@@ -3,8 +3,16 @@
 
 <h1>{{ room.name }}</h1>
 {% if room.projector %}
-    Projektor: {{ room.projector }}
+<p>Projektor: {{ room.projector }}</p>
 {% endif %}
+
+{% if room.accesscards.all %}
+<p>Access cards:
+    {% for card in room.accesscards.all %}
+    {{ card }}
+    {% endfor %}
+{% endif %}
+</p>
 
 <p>
     {% for day in days_in_month %}
