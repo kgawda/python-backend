@@ -4,18 +4,25 @@
 from django.db import migrations
 from django.conf import settings
 
+def fill_in_user_link(apps, schema_editor):
+    Reservation = apps.get_model('buildingmanagement', 'Reservation')
+    User = apps.get_model('auth', 'User')
+    for r in Reservation.objects.all():
+        r.user_link = User.objects.get(username=r.user)
+        r.save()
+
+def clear_user_link(apps, schema_editor):
+    Reservation = apps.get_model('buildingmanagement', 'Reservation')
+    for r in Reservation.objects.all():
+        r.user_link = None
+        r.save()
+
 class Migration(migrations.Migration):
 
     dependencies = [
         ('buildingmanagement', '0006_reservation_user_link'),
     ]
 
-    def fill_in_user_link(self, apps, schema_editor):
-        Reservation = apps.get_model('buildingmanagement', 'Reservation')
-        User = settings.AUTH_USER_MODEL
-        for r in Reservation.object.all():
-            r.user_link = User.object.get(name=r.user)
-
     operations = [
-        migrations.RunPython(fill_in_user_link)
+        migrations.RunPython(fill_in_user_link, clear_user_link)
     ]
