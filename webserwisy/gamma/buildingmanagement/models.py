@@ -52,11 +52,11 @@ class Room(models.Model):
 class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     date = models.DateField()
-    user = models.CharField(max_length=255)
+    #user = models.CharField(max_length=255)
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # ^ takie użycie User zadziała, ale może sprawić kłopoty później
     # https://docs.djangoproject.com/en/4.0/topics/auth/customizing/#referencing-the-user-model
-    user_link = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )

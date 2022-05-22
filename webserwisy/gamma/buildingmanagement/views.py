@@ -36,7 +36,7 @@ def reserve(request):
             reservation = Reservation(
                 room=form.cleaned_data["room"],
                 date=form.cleaned_data["date"],
-                user=request.user.username
+                user=request.user
             )
             try:
                 reservation.save()
@@ -56,7 +56,7 @@ def reserve2(request):
         form = ReservationFrom2(request.POST)
         if form.is_valid():
             reservation = form.save(commit=False)  # nie zapisuje w bazie
-            reservation.user = request.user.username
+            reservation.user = request.user
             reservation.save()
             return redirect("reservations")
     else:
