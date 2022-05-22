@@ -85,3 +85,12 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"{self.room.name}/{self.date}"
+
+
+class Projector(models.Model):
+    producer = models.CharField(max_length=100)
+    serial_number = models.CharField(max_length=100)
+    room = models.OneToOneField(Room, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.producer}/{self.serial_number}"

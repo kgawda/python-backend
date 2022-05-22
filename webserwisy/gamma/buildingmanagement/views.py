@@ -69,6 +69,7 @@ class ReservationListView(LoginRequiredMixin, ListView):
 def room(request, room_id):
     room = get_object_or_404(Room, id=room_id)
     reserved_days = room.get_reserved_days(month=5)
+    # jak sprawdzić czy sala ma rzutnik? tak: hasattr(room, "projector")
     return render(
         request,
         'buildingmanagement/room.html',
@@ -78,3 +79,6 @@ def room(request, room_id):
             'days_in_month': range(1, 32)
         }
     )
+
+# Rzutniki w salach, które mają przynajmniej jedną rezerwację w maju:
+# Projector.objects.filter(room__reservation__date__month=5).distinct()
