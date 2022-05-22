@@ -1,7 +1,7 @@
 from django.db import models
 from django.db import transaction
-from django.db.models import F
-from django.db.models import UniqueConstraint
+from django.db.models import F, Q
+from django.db.models import UniqueConstraint, CheckConstraint
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -10,6 +10,15 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     people_count = models.PositiveSmallIntegerField(default=0)
     max_people_count = models.PositiveSmallIntegerField(null=False)
+
+    class Meta:
+        constraints = [
+            CheckConstraint(
+                check=Q(people_count__lte=F('max_people_count')),
+                name="people_count_maximum"
+            )
+        ]
+        #Room.objects.filter(people_count__lte=F('max_people_count'))
 
     def __str__(self):
         return self.name
