@@ -3,11 +3,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import ListView
 from django.db.utils import IntegrityError
 
-from .models import Reservation
+from .models import Reservation, Room
 from .forms import ReservationForm, ReservationFrom2
 
 def home(request):
@@ -65,3 +65,16 @@ def reserve2(request):
 
 class ReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
+
+def room(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+    reserved_days = room.get_reserved_days(month=5)
+    return render(
+        request,
+        'buildingmanagement/room.html',
+        {
+            'room': room,
+            'reserved_days': reserved_days,
+            'days_in_month': range(1, 32)
+        }
+    )

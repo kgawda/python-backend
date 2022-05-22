@@ -57,6 +57,10 @@ class Room(models.Model):
         #     other_room.people_count += count
         #     other_room.save()
 
+    def get_reserved_days(self, month):
+        return Reservation.objects.filter(room=self).\
+            filter(date__month=month).values_list("date__day", flat=True)
+
 
 class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)

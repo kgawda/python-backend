@@ -1,0 +1,17 @@
+{% extends 'buildingmanagement/base.html' %}
+{% block content %}
+
+<h1>{{ room.name }}</h1>
+
+<p>
+    {% for day in days_in_month %}
+        {% if day not in reserved_days %}
+            <b>{{ day }}</b>
+        {% else %}
+            {{ day }}
+        {% endif %}
+    {% endfor %}
+</p>
+
+
+{% endblock %}
