@@ -94,3 +94,14 @@ class Projector(models.Model):
 
     def __str__(self):
         return f"{self.producer}/{self.serial_number}"
+
+
+class AccessCard(models.Model):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    rooms = models.ManyToManyField(Room, related_name="accesscards")
+
+    def __str__(self):
+        return f"{self.owner.username.capitalize()}'s card ({self.id})"
