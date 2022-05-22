@@ -58,8 +58,7 @@ class Reservation(models.Model):
     # https://docs.djangoproject.com/en/4.0/topics/auth/customizing/#referencing-the-user-model
     user_link = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        null=True
+        on_delete=models.CASCADE
     )
 
 
