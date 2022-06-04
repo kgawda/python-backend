@@ -32,6 +32,10 @@ class TestVectors(unittest.TestCase):
         self.vector10 = Vector(1, 0)
         self.vector01 = Vector(0, 1)
 
+    def test_modify_vector(self):
+        self.vector01.x = 1
+        self.assertEqual(self.vector01.x, 1)
+
     def test_simple_add(self):
         v = self.vector10 + self.vector01
         self.assertEqual(v.x, 1)
