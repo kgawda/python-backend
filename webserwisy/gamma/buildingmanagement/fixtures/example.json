@@ -1,0 +1,233 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$glTBVW5J3L4TAvRieWDMDU$5Jo6duO03+V2vzC/IU0uWE4yWtgqUBs/8ZWJ2KTuK34=",
+        "last_login": "2022-06-04T08:04:04.848Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-05-21T09:32:46.763Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$VRgDByA4oP89kdI4DEfELV$V7QvCJ0jckrXXzVJv7Y/Fdn64wsoe1R8Y7YVKsd7SRk=",
+        "last_login": "2022-05-21T14:12:02.555Z",
+        "is_superuser": false,
+        "username": "adam",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-05-21T14:12:00.297Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$MUU9aNy477sQ8zSqXpd5Jz$+S1E+VgdAMsC3BIi6EsdRupcYwWqMGmiK6efzy//8M8=",
+        "last_login": "2022-05-21T14:12:54.040Z",
+        "is_superuser": false,
+        "username": "ewa",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-05-21T14:12:51.890Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$vZ5aGch8x2Y5ilXYurIBM3$MrOs3916np4sak3N0k8he73kJs3D81zDBBu7e12gnko=",
+        "last_login": "2022-05-21T14:33:58.573Z",
+        "is_superuser": false,
+        "username": "stefan",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-05-21T14:33:34.181Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "buildingmanagement.room",
+    "pk": 1,
+    "fields": {
+        "name": "Sala1",
+        "people_count": 9,
+        "max_people_count": 30
+    }
+},
+{
+    "model": "buildingmanagement.room",
+    "pk": 2,
+    "fields": {
+        "name": "Sala2",
+        "people_count": 1,
+        "max_people_count": 30
+    }
+},
+{
+    "model": "buildingmanagement.room",
+    "pk": 3,
+    "fields": {
+        "name": "Sala3000",
+        "people_count": 0,
+        "max_people_count": 30
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 1,
+    "fields": {
+        "room": 1,
+        "date": "2022-05-21",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 4,
+    "fields": {
+        "room": 1,
+        "date": "2022-05-09",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 5,
+    "fields": {
+        "room": 1,
+        "date": "2022-05-06",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 8,
+    "fields": {
+        "room": 2,
+        "date": "2022-05-13",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 9,
+    "fields": {
+        "room": 2,
+        "date": "2022-05-22",
+        "user": 3
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 10,
+    "fields": {
+        "room": 1,
+        "date": "2022-05-10",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 11,
+    "fields": {
+        "room": 1,
+        "date": "2022-01-22",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 12,
+    "fields": {
+        "room": 3,
+        "date": "2022-06-05",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.reservation",
+    "pk": 13,
+    "fields": {
+        "room": 3,
+        "date": "2022-06-06",
+        "user": 1
+    }
+},
+{
+    "model": "buildingmanagement.projector",
+    "pk": 1,
+    "fields": {
+        "producer": "Benq",
+        "serial_number": "1111",
+        "room": 1
+    }
+},
+{
+    "model": "buildingmanagement.accesscard",
+    "pk": 1,
+    "fields": {
+        "owner": 3,
+        "rooms": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "buildingmanagement.accesscard",
+    "pk": 2,
+    "fields": {
+        "owner": 4,
+        "rooms": [
+            2
+        ]
+    }
+},
+{
+    "model": "buildingmanagement.accesscard",
+    "pk": 3,
+    "fields": {
+        "owner": 1,
+        "rooms": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "buildingmanagement.accesscard",
+    "pk": 4,
+    "fields": {
+        "owner": 4,
+        "rooms": [
+            1
+        ]
+    }
+}
+]

@@ -59,3 +59,17 @@ python manage.py createsuperuser  # podajemy dowolny mail
 python manage.py runserver
 ```
 Otwieramy naszą stroną z adresem `/admin`
+
+
+Fixtury
+-------
+
+Przykadowe polecenia:
+
+```bash
+python manage.py dumpdata -o buildingmanagement\fixtures\example.json --indent 4
+python manage.py loaddata example
+pip install pyyaml
+python manage.py dumpdata -o buildingmanagement\fixtures\example3.yml --format yaml --in
+dent 4
+```
