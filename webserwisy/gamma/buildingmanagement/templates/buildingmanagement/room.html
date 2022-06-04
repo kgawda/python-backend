@@ -6,6 +6,10 @@
 <p>Projektor: {{ room.projector }}</p>
 {% endif %}
 
+{% if room.image %}
+<img src="{{ room.image.url }}">
+{% endif %}
+
 {% if room.accesscards.all %}
 <p>Access cards:
     {% for card in room.accesscards.all %}

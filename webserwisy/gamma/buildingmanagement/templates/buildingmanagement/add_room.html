@@ -1,0 +1,10 @@
+{% extends 'buildingmanagement/base.html' %}
+
+{% block content %}
+  <h2>Add a room:</h2>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+  </form>
+{% endblock %}

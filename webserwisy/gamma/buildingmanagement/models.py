@@ -10,6 +10,7 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     people_count = models.PositiveSmallIntegerField(default=0)
     max_people_count = models.PositiveSmallIntegerField(null=False)
+    image = models.ImageField(upload_to="images/", null=True)
 
     class Meta:
         constraints = [

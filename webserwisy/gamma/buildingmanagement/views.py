@@ -6,10 +6,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import ListView
+from django.views import View
 from django.db.utils import IntegrityError
 
 from .models import Reservation, Room
-from .forms import ReservationForm, ReservationFrom2
+from .forms import ReservationForm, ReservationFrom2, RoomForm
 
 def home(request):
     # request.user.username
@@ -109,3 +110,15 @@ def no_card_warnings(request):
     return render(request, 'buildingmanagement/warnings.html', {'warning_rooms': warning_rooms})
 
 
+class AddRoom(View):
+
+    def get(self, request):
+        form = RoomForm()
+        return render(request, 'buildingmanagement/add_room.html', {'form': form})
+
+    def post(self, request):
+        form = RoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            room = form.save()
+            return redirect("room", room.id)
+        return render(request, 'buildingmanagement/add_room.html', {'form': form})

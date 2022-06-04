@@ -18,3 +18,8 @@ class ReservationFrom2(forms.ModelForm):
         widgets = {
             "date": forms.SelectDateWidget(empty_label="Nothing")
         }
+
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        exclude = []
