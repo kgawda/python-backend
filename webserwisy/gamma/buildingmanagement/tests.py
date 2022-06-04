@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test import Client
 from django.db.utils import IntegrityError
 from .models import Room
 
@@ -33,3 +34,22 @@ class PeopleTrackingTestCase(TestCase):
         room2.refresh_from_db()
         self.assertEqual(room1.people_count, 7)
         self.assertEqual(room2.people_count, 3)
+
+class ViewsTestCase(TestCase):
+    fixtures = ['example']
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_home(self):
+        response = self.client.get('/')
+        # self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Book a room")
+
+    def test_create_reservation(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.post(
+            '/reserve',
+            {'room': 1, 'date': '2022-06-04'}
+        )
+        self.assertRedirects(response, '/reservations')
