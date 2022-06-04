@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -65,6 +66,9 @@ def reserve2(request):
 
 class ReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
+    # objects = Reservation.objects.all()
+    # context = {'objects': objects}
+    # return render(request, 'buildingmanagement/reservation_list.html', context)
 
 def room(request, room_id):
     #room = get_object_or_404(Room, id=room_id)
@@ -89,3 +93,19 @@ def room(request, room_id):
 
 # Rzutniki w salach, które mają przynajmniej jedną rezerwację w maju:
 # Projector.objects.filter(room__reservation__date__month=5).distinct()
+
+
+def no_card_warnings(request):
+    today = datetime.today()
+    after30 = today + timedelta(days=30)
+    warning_rooms = Room.objects.filter(
+        reservation__date__gte=today,
+        reservation__date__lt=after30,
+        reservation__user=request.user
+    ).exclude(
+        accesscards__owner=request.user
+    ).distinct()
+
+    return render(request, 'buildingmanagement/warnings.html', {'warning_rooms': warning_rooms})
+
+

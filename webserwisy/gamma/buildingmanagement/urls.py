@@ -7,5 +7,6 @@ urlpatterns = [
     path("reserve", views.reserve, name="reserve"),
     path("reserve2", views.reserve2),
     path("reservations", views.ReservationListView.as_view(), name="reservations"),
+    path("warnings", views.no_card_warnings, name='no_card_warnings'),
     path("signup", views.signup, name="signup")
 ]

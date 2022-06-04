@@ -1,0 +1,13 @@
+{% extends "buildingmanagement/base.html" %}
+{% block content %}
+
+<p>Rooms with reservation soon and no access card:</p>
+<ul>
+    {% for object in warning_rooms %}
+    <li>
+        {{ object }}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
