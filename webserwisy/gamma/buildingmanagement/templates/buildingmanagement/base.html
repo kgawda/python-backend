@@ -6,7 +6,8 @@
 </head>
 <body>
 <header>
-    <a href="{% url 'home' %}">Home</a> |
+    {% load static %}
+    <a href="{% url 'home' %}"><img src="{% static 'buildingmanagement/logo.png' %}" height="20em"></a> |
     {% if user.is_authenticated %}
         {{ user }} | <a href="{% url 'logout' %}">logout</a>
     {% else %}
