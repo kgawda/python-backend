@@ -13,4 +13,4 @@ Zadania z pierwszego zjazdu
    - zadanie na szóstkę: trochę ładniejsza strona
 
 To jest połączenie linijek dodanych z notepad i z Pycharm
-Kolejna zmiana z notepad
+Kolejna zmiana z notepad; a tu dopisek z PyChamr
