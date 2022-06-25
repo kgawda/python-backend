@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+import requests
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -128,3 +130,9 @@ class AddRoom(View):
             room = form.save()
             return redirect("room", room.id)
         return render(request, 'buildingmanagement/add_room.html', {'form': form})
+
+class WeatherInfo(View):
+    def get(self, request, city):
+        r = requests.get(f"https://wttr.in/{city}?format=j1")
+        temperature = r.json()["current_condition"][0]["temp_C"]
+        return HttpResponse(f"<h1>{city}</h1><p>Temperature is {temperature}</p>")

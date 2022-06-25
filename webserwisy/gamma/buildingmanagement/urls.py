@@ -10,5 +10,6 @@ urlpatterns = [
     path("reserve2", views.reserve2),
     path("reservations", views.ReservationListView.as_view(), name="reservations"),
     path("warnings", views.no_card_warnings, name='no_card_warnings'),
-    path("signup", views.signup, name="signup")
+    path("signup", views.signup, name="signup"),
+    path("weather/<str:city>", views.WeatherInfo.as_view(), name="weather")
 ] + static("images/", document_root="images/")
