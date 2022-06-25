@@ -11,3 +11,5 @@ Zadania z pierwszego zjazdu
    - ma być drukowana uzywana przeglądarka ('User-Agent' z request.headers)
    - zadanie na szóstkę: aktualna pogoda :)
    - zadanie na szóstkę: trochę ładniejsza strona
+
+Testowa linijka z Pycharm
