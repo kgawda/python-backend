@@ -1,5 +1,5 @@
-Do zrobienia
-============
+Zadania z pierwszego zjazdu
+===========================
 
 1. Zapoznać się z `podstawy/metody_str_list.md`
 2. Funkcje i dekoratory (`podstawy/zadanie_dekoratory.py`)
