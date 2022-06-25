@@ -64,6 +64,7 @@ Otwieramy naszą stroną z adresem `/admin`
 Fixtury
 -------
 
+Sposób na wrzucenie testowych danych do bazy.
 Przykadowe polecenia:
 
 ```bash
