@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from django.test import TestCase
 from django.test import Client
 from django.db.utils import IntegrityError
@@ -53,3 +54,32 @@ class ViewsTestCase(TestCase):
             {'room': 1, 'date': '2022-06-04'}
         )
         self.assertRedirects(response, '/reservations')
+
+
+class MockRequestsResponse:
+    def json(self):
+        return\
+            {
+                "current_condition": [
+                    {
+                        "FeelsLikeC": "25",
+                        "FeelsLikeF": "76",
+                        "cloudcover": "100",
+                        "humidity": "76",
+                        "observation_time": "04:08 PM",
+                        "precipMM": "0.2",
+                        "pressure": "1019",
+                        "temp_C": "22"
+		            }
+                ]
+            }
+
+class WatherTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    @patch("requests.get", return_value=MockRequestsResponse())
+    def test_temperature_in_warsaw(self, mock_requests_get):
+        response = self.client.get('/weather/Warsaw')
+        self.assertContains(response, "Temperature is 22")
+        self.assertTrue(mock_requests_get.called)
