@@ -12,9 +12,11 @@ from django.db.utils import IntegrityError
 from .models import Reservation, Room
 from .forms import ReservationForm, ReservationFrom2, RoomForm
 
+
 def home(request):
     # request.user.username
     return render(request, 'buildingmanagement/home.html', {})
+
 
 def signup(request):
     if request.method == 'POST':
@@ -29,6 +31,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
 
 @login_required
 def reserve(request):
@@ -52,6 +55,7 @@ def reserve(request):
         form = ReservationForm()
     return render(request, 'buildingmanagement/reserve.html', {'form': form})
 
+
 @login_required
 def reserve2(request):
     if request.method == "POST":
@@ -65,11 +69,13 @@ def reserve2(request):
         form = ReservationFrom2()
     return render(request, 'buildingmanagement/reserve.html', {'form': form})
 
+
 class ReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
     # objects = Reservation.objects.all()
     # context = {'objects': objects}
     # return render(request, 'buildingmanagement/reservation_list.html', context)
+
 
 def room(request, room_id):
     #room = get_object_or_404(Room, id=room_id)
