@@ -12,4 +12,4 @@ Zadania z pierwszego zjazdu
    - zadanie na szóstkę: aktualna pogoda :)
    - zadanie na szóstkę: trochę ładniejsza strona
 
-Inna linijka, z notepad
+To jest połączenie linijek dodanych z notepad i z Pycharm

@@ -1,7 +1,7 @@
 Tworzenie nowego projektu w Django
 ----------------------------------
 
-Instalacja paczki Django (najlepiej w virtualenv):
+Instalacja paczki Django (opcjonalnie w virtualenv):
 ```shell
 pip install django
 # ewentualnie aktualizacja:
