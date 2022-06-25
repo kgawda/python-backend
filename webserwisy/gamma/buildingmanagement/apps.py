@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class BuildingmanagementConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'buildingmanagement'
+
+    def ready(self):
+        from . import signals

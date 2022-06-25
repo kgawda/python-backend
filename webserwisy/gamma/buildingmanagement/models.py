@@ -106,3 +106,13 @@ class AccessCard(models.Model):
 
     def __str__(self):
         return f"{self.owner.username.capitalize()}'s card ({self.id})"
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    position = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.user} profile"
